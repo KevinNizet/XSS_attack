@@ -47,8 +47,15 @@
         input.addEventListener("input", updateValue);
 
         function updateValue(e) {
-            log.innerHTML = e.target.value;
-        }
+        const sanitizedValue = sanitizeHTML(e.target.value); // Échapper les caractères spéciaux HTML
+        log.textContent = sanitizedValue;
+    }
+
+    function sanitizeHTML(str) {
+        const temp = document.createElement("div");
+        temp.textContent = str;
+        return temp.innerHTML;
+    }
 
     </script>
 
